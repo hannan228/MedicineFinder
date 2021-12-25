@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="username"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            style="@style/profile_textview_style" />
+        <TextView
+            android:id="@+id/email_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="email"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            style="@style/profile_textview_style" />
+        <TextView
+            android:id="@+id/gender_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="male"
+            android:drawableLeft="@drawable/ic_baseline_person_search_24"
+            style="@style/profile_textview_style" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bmi:"
+                style="@style/profile_textview_style2" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/bmi_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="male"
+                style="@style/profile_textview_style" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="height:"
+                style="@style/profile_textview_style2" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/height_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="male"
+                style="@style/profile_textview_style" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="weight:"
+                style="@style/profile_textview_style2" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/weight_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="male"
+                style="@style/profile_textview_style" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

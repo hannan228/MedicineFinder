@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChatActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send To:"
+            android:textColor="@color/black"
+            ></TextView>
+        <EditText
+            android:id="@+id/sendTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="abc@gmail.com"
+            ></EditText>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_gravity="center"
+        >
+        <EditText
+            android:id="@+id/textTOsend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="message"
+            ></EditText>
+        <ImageView
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_send_24"
+            android:onClick="sendText"
+            ></ImageView>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
