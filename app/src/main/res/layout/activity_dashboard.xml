@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
+            android:padding="10dp"
             >
             <TextView
                 android:id="@+id/diet_title"
@@ -50,9 +51,19 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Search Medicine"
+        android:layout_gravity="center"
+        android:onClick="searchMedicine"
+        ></Button>
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="chat"
         android:layout_gravity="center"
         android:onClick="goToChat"
         ></Button>
+
+
 
 </LinearLayout>

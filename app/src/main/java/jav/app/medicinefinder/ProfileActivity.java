@@ -35,9 +35,15 @@ TextView name,email,gender,height,weight,bmi;
 
         email = findViewById(R.id.email_profile);
         email.setText(SharedPreferenceManager.getInstance(this).getEmail());
+        String userType;
+        if (SharedPreferenceManager.getInstance(this).getGender()=="1"){
+            userType = "patient";
+        }else {
+            userType = "doctor";
+        }
 
         gender = findViewById(R.id.gender_profile);
-        gender.setText(SharedPreferenceManager.getInstance(this).getGender());
+        gender.setText(""+userType);
 
         height = findViewById(R.id.height_profile);
         height.setText(SharedPreferenceManager.getInstance(this).getHeight());

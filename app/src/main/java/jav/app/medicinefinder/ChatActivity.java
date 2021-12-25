@@ -62,7 +62,7 @@ public class ChatActivity extends AppCompatActivity {
     private void verticalRecyclerViewSettings() {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 
         recyclerViewAdapter = new RecyclerViewAdapter(ChatActivity.this, messageList);
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -91,6 +91,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 progressDialog.dismiss();
                 try {
+
                     JSONObject jsonObject = new JSONObject(response);
 
                     for (int i=0;i<response.length();i++){
@@ -99,6 +100,11 @@ public class ChatActivity extends AppCompatActivity {
                     }
 
                     if(!jsonObject.getBoolean("error")){
+                        messageList.add(new Message(""+message,
+                                ""+SharedPreferenceManager.getInstance(ChatActivity.this).getEmail(),
+                                ""+sendTo,
+                                ""+currentDate));
+                        recyclerViewAdapter.notifyDataSetChanged();
 
                     }else{
                         Toast.makeText(ChatActivity.this, ""+"user not available", Toast.LENGTH_SHORT).show();
@@ -129,7 +135,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         };
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
-
 
     }
 

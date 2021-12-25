@@ -150,4 +150,8 @@ public class Dashboard extends AppCompatActivity {
     public void goToChat(View view) {
         startActivity(new Intent(this,ChatActivity.class));
     }
+
+    public void searchMedicine(View view) {
+        startActivity(new Intent(this,MedicineSearchActivity.class));
+    }
 }
