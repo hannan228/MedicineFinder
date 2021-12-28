@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -35,6 +36,7 @@ import java.util.Map;
 import jav.app.medicinefinder.Adapter.RecyclerViewAdapter;
 import jav.app.medicinefinder.Model.Message;
 
+import static jav.app.medicinefinder.Constants.URL_FETCH_MESSAGE;
 import static jav.app.medicinefinder.Constants.URL_LOGIN;
 import static jav.app.medicinefinder.Constants.URL_SEND_MESSAGE;
 import static jav.app.medicinefinder.Constants.URL_SEND_User_AVAILABLE;
@@ -58,7 +60,10 @@ public class ChatActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         messageList = new ArrayList<>();
         verticalRecyclerViewSettings();
+
+        fecthMessage();
     }
+
     private void verticalRecyclerViewSettings() {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -68,12 +73,13 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
 
     }
+
     public void sendText(View view) {
         String text = chat.getText().toString();
 
         try {
             if (!text.isEmpty()){
-                sendToIsAvailable("bb"+text);
+                sendToIsAvailable(""+text);
             }else {
                 chat.setError("message is empty");
                 Toast.makeText(this, "message is empty", Toast.LENGTH_SHORT).show();
@@ -92,31 +98,31 @@ public class ChatActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 try {
 
-                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = new JSONArray(response);
+                    Log.d("object length",""+jsonArray.length());
 
-                    for (int i=0;i<response.length();i++){
-                        JSONObject jsonObject2 = new JSONObject(response);
-                        Log.d("object",""+jsonObject2);
-                    }
+                    int length = jsonArray.length()-1;
+                    messageList.clear();
+                    for (int i=0; i <= length; i++){
 
-                    if(!jsonObject.getBoolean("error")){
-                        messageList.add(new Message(""+message,
-                                ""+SharedPreferenceManager.getInstance(ChatActivity.this).getEmail(),
-                                ""+sendTo,
-                                ""+currentDate));
+                        Log.d("object length",""+jsonArray.getString(i));
+                        JSONObject jsonObject = new JSONObject(jsonArray.getString(i));
+                        Log.d("object length",""+jsonObject.getString("text"));
+
+                        messageList.add(new Message(""+jsonObject.getString("text"),
+                                ""+jsonObject.getString("sender_id"),
+                                ""+jsonObject.getString("send_to"),
+                                ""+jsonObject.getString("Created_at")));
                         recyclerViewAdapter.notifyDataSetChanged();
-
-                    }else{
-                        Toast.makeText(ChatActivity.this, ""+"user not available", Toast.LENGTH_SHORT).show();
-                        sendTo.setError("this user is not available");
                     }
 
                 }catch (JSONException jsonException){
+
                     Log.d("Error In Json",""+jsonException);
                     Toast.makeText(ChatActivity.this, ""+jsonException, Toast.LENGTH_SHORT).show();
+
                 }
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -135,10 +141,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         };
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
-
     }
-
-
 
     public void sendToIsAvailable(String message){
         String sendto = sendTo.getText().toString();
@@ -183,5 +186,52 @@ public class ChatActivity extends AppCompatActivity {
             };
             RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
         }
+    }
+
+    public void fecthMessage(){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_FETCH_MESSAGE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressDialog.dismiss();
+                try {
+
+                    JSONArray jsonArray = new JSONArray(response);
+                    Log.d("object length",""+jsonArray.length());
+
+                    int length = jsonArray.length()-1;
+                    messageList.clear();
+                    for (int i=0; i <= length; i++){
+
+                        Log.d("object length",""+jsonArray.getString(i));
+                        JSONObject jsonObject = new JSONObject(jsonArray.getString(i));
+                        Log.d("object length",""+jsonObject.getString("text"));
+
+                        messageList.add(new Message(""+jsonObject.getString("text"),
+                                ""+jsonObject.getString("sender_id"),
+                                ""+jsonObject.getString("send_to"),
+                                ""+jsonObject.getString("Created_at")));
+                        recyclerViewAdapter.notifyDataSetChanged();
+                    }
+
+                }catch (JSONException jsonException){
+
+                    Log.d("Error In Json",""+jsonException);
+                    Toast.makeText(ChatActivity.this, ""+jsonException, Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Toast.makeText(ChatActivity.this, ""+error, Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    public void refreshMessage(View view) {
+        fecthMessage();
     }
 }

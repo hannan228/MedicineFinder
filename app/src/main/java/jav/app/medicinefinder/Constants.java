@@ -8,6 +8,7 @@ public class Constants {
     public static final String URL_DIET = ROOT_URL + "dietchart.php";
     public static final String URL_MEDICINE = ROOT_URL + "medecine.php";
     public static final String URL_SEND_MESSAGE = ROOT_URL + "SendMessage.php";
+    public static final String URL_FETCH_MESSAGE = ROOT_URL + "fetchMessage.php";
     public static final String URL_SEND_User_AVAILABLE = ROOT_URL + "isUserAvailable.php";
 
 }

@@ -43,7 +43,25 @@
             android:layout_height="wrap_content"
             android:hint="message"
             ></EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:gravity="right"
+        >
         <ImageView
+            android:layout_gravity="left"
+            android:layout_marginRight="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_refresh_24"
+            android:onClick="refreshMessage"
+            ></ImageView>
+        <ImageView
+
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
@@ -51,8 +69,8 @@
             android:src="@drawable/ic_baseline_send_24"
             android:onClick="sendText"
             ></ImageView>
-    </LinearLayout>
 
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

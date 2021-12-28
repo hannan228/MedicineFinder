@@ -53,7 +53,10 @@
         android:layout_height="wrap_content"
         android:text="Search Medicine"
         android:layout_gravity="center"
+        android:background="@drawable/circle"
         android:onClick="searchMedicine"
+        android:padding="10dp"
+        android:textColor="@color/white"
         ></Button>
     <Button
         android:layout_marginTop="20dp"
@@ -62,6 +65,9 @@
         android:text="chat"
         android:layout_gravity="center"
         android:onClick="goToChat"
+        android:background="@drawable/circle"
+        android:padding="10dp"
+        android:textColor="@color/white"
         ></Button>
 
 
